@@ -1,15 +1,16 @@
-// import { Button } from ".";
-import { Keyboard, View } from "react-native";
+
+import { View } from "react-native";
 import CompetitionPicker from "./";
+import { useState } from "react";
 
 const Meta = {
   title: "Components/CompetitionPicker",
   component: CompetitionPicker,
   argTypes: {
     selectedValue: {
-      control: "selectedValue",
+      action: "selectedCompetition",
     },
-    onValueChange: { action: "onValueChange" },
+    onValueChange: { action: "setSelectedCompetition" },
     error: { action: "error" },
   },
   decorators: [
@@ -23,10 +24,36 @@ const Meta = {
 
 export default Meta;
 
+ const [selectedCompetition, setSelectedCompetition] = useState("");
+
+// export const Competition = () => {
+//    args: { 
+    
+//     selectedValue: {selectedCompetition},
+//         onValueChange: {setSelectedCompetition},
+//    };
+
+//     const [selectedCompetition, setSelectedCompetition] = useState('');
+//  return (
+//       <CompetitionPicker
+//         selectedValue={selectedCompetition}
+//         onValueChange={setSelectedCompetition}
+//         error=""
+//       />
+//     );
+// };
 export const Competition = {
-  args: {},
+  args: {
+    error: "",
+    selectedValue: "selectedCompetition ",
+    onValueChange: "setSelectedCompetition",
+  },
 };
 
 export const error = {
-  args: { error: "You must pick a competition to register" },
+  args: { 
+    error: "You must pick a competition to register",
+    selectedValue: "selectedCompetition",
+        onValueChange: "setSelectedCompetition",
+   },
 };

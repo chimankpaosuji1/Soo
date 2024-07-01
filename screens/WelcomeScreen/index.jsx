@@ -1,12 +1,13 @@
 import React from "react";
-import { TouchableOpacity, View, StyleSheet, Text, Button } from "react-native";
+import { TouchableOpacity, View, StyleSheet, Text, Button, Pressable } from "react-native";
 import Background from "../../components/Background";
 import Feather from "@expo/vector-icons/Feather";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-
+import { useNavigation } from "@react-navigation/native";
 
 const WelcomeScreen = (props) => {
+  const navigation = useNavigation();
   return (
     <Background>
       <View
@@ -37,11 +38,11 @@ const WelcomeScreen = (props) => {
           </Text>
         </View>
         <View>
-          <TouchableOpacity
+          <Pressable
             color="#fff"
             style={styles.container}
             activeOpacity={0.8}
-            Press={() => props.navigation.navigate("Signup")}
+            onPress={() => navigation.navigate("Signup")}
           >
             <MaterialIcons
               name="exit-to-app"
@@ -51,13 +52,13 @@ const WelcomeScreen = (props) => {
             />
             <Text style={styles.text}>Signup for free</Text>
             <Feather name="arrow-right-circle" size={30} color="#fff" />
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity
+          <Pressable
             color="#fff"
             style={styles.container2}
             activeOpacity={0.8}
-            Press={() => props.navigation.navigate("/")}
+            onPress={() => navigation.navigate("Signup")}
           >
             <FontAwesome
               name="envelope-o"
@@ -68,7 +69,7 @@ const WelcomeScreen = (props) => {
             <Text style={styles.text}>Continue with Email</Text>
 
             <Feather name="arrow-right-circle" size={30} color="#fff" />
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
     </Background>

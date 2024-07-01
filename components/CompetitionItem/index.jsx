@@ -11,20 +11,30 @@ const CompetitionItem = ({ header, date, description }) => (
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    borderBottomWidth: 1,
+    padding: 20,
     borderBottomColor: "#ddd",
+    backgroundColor: "#253BFF",
+    color: "#fff",
+    borderRadius: 20,
+    marginHorizontal: 20,
+    marginBottom: 20,
   },
   header: {
     fontSize: 18,
     fontWeight: "bold",
+    marginBottom: 5,
+    color: "#fff",
   },
   date: {
     fontSize: 14,
     color: "gray",
+    marginBottom: 5,
+    color: "#fff",
   },
   description: {
     fontSize: 16,
+    marginBottom: 5,
+    color: "#fff",
   },
 });
 

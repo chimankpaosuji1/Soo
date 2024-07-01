@@ -21,6 +21,7 @@ import CheckBox from "expo-checkbox";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUpScreen = ({ onSignUp }) => {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +33,7 @@ const SignUpScreen = ({ onSignUp }) => {
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [errors, setErrors] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
-
+ const navigation = useNavigation();
 
   const openModal = () => {
   setModalVisible(true);

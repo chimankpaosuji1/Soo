@@ -7,12 +7,14 @@ const meta = {
     layout: "centered",
   },
   argTypes: {
-    onSignUp: {action: "onSignup"},
+    onSignUp: { action: "onSignUp" },
   },
 };
 
 export default meta;
 
 export const Singup = {
-  args: {}
+  args: {
+    onSignUp: () => console.log("onSignUp"),
+  }
 };

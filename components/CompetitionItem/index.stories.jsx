@@ -25,25 +25,23 @@ export default Meta;
 
 export const Competition1 = {
   args: {
-    header: "Competition 1",
-      date: "2024-07-01",
-      description: "Description for Competition 1",
-
+    header: "20th Asian Game - Achi Nagoya 2026 (Winter)",
+    date: "YYYY-MM-DD ~ YYYY-MM-DD",
+    description: "Pyeongchang, Gangwon-do, Korea",
   },
 };
 export const Competition2 = {
   args: {
-    header: "Competition 2",
-      date: "2024-08-15",
-      description: "Description for Competition 2",
-
+    header: "20th Asian Game - Achi Nagoya 2026 (Winter)",
+    date: "YYYY-MM-DD ~ YYYY-MM-DD",
+    description: "DPyeongchang, Gangwon-do, Korea Very Very long city name",
   },
 };
 export const Competition3 = {
   args: {
-     header: "Competition 3",
-      date: "2024-09-10",
-      description: "Description for Competition 3",
+    header: "20th Asian Game - Achi Nagoya 2026 (Winter)",
+    date: "YYYY-MM-DD ~ YYYY-MM-DD",
+    description: "Pyeongchang, Gangwon-do, Korea",
   },
 };
 

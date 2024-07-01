@@ -14,4 +14,5 @@ export default ({ config }) => ({
     output: "static",
     favicon: "./assets/images/favicon.png",
   },
+  
 });
