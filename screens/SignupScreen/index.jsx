@@ -7,6 +7,7 @@ import PasswordInput from "../../components/PasswordInput";
 import CompetitionPicker from "../../components/CompetitonPicker";
 import { Button } from "../../components";
 import { AntDesign } from "@expo/vector-icons";
+import CheckBox from "expo-checkbox";
 
 const SignUpScreen = ({ onSignUp }) => {
   const [firstName, setFirstName] = useState("");
@@ -138,7 +139,7 @@ const SignUpScreen = ({ onSignUp }) => {
         error={errors.lastName}
       />
 
-      {/* <View style={styles.checkboxContainer}>
+      <View style={styles.checkboxContainer}>
         <CheckBox
           value={agreeToTerms}
           onValueChange={setAgreeToTerms}
@@ -168,7 +169,7 @@ const SignUpScreen = ({ onSignUp }) => {
       </View>
       {errors.agreeToTerms ? (
         <Text style={styles.error}>{errors.agreeToTerms}</Text>
-      ) : null} */}
+      ) : null}
 
       <Button text="Sign Up" onPress={handleSignUp} />
     </View>

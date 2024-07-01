@@ -13,16 +13,6 @@ export const Button = ({ onPress, text }) => {
   );
 
 
-   <View>
-     <TextInput
-       placeholder="Enter your Email*"
-       value={value}
-       onChangeText={onChangeText}
-       keyboardType="email-address"
-       style={styles.input}
-     />
-     {error ? <Text style={styles.error}>{error}</Text> : null}
-   </View>;
 };
 
 const styles = StyleSheet.create({

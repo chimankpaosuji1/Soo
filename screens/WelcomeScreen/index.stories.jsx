@@ -1,4 +1,4 @@
-import { WelcomeScreen } from "./index";
+import WelcomeScreen from "./index";
 const meta = {
   title: "Screen/WelcomeScreen",
   component: WelcomeScreen,
