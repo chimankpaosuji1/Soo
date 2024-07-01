@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
   container: {
     width: 300,
     height: 50,
-    marginBottom: 20,
+    marginBottom: 30,
     paddingHorizontal: 10,
-    borderRadius: 8,
+    borderRadius: 30,
     backgroundColor: "blue",
     alignItems: "center",
     justifyContent: "center",
     display: "flex"
   },
-  text: { color: "white", textAlign: "center", fontSize: 20 },
+  text: { color: "white", textAlign: "center", fontSize: 14 },
 });

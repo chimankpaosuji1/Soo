@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Alert, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Modal,
+  Pressable,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { TextBox } from "../../components";
 import FirstNameInput from "../../components/FirstNameInput";
 import LastNameInput from "../../components/LastNameInput";
 import EmailInput from "../../components/EmailInput";
@@ -8,6 +18,9 @@ import CompetitionPicker from "../../components/CompetitonPicker";
 import { Button } from "../../components";
 import { AntDesign } from "@expo/vector-icons";
 import CheckBox from "expo-checkbox";
+import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 const SignUpScreen = ({ onSignUp }) => {
   const [firstName, setFirstName] = useState("");
@@ -18,7 +31,15 @@ const SignUpScreen = ({ onSignUp }) => {
   const [competition, setCompetition] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [errors, setErrors] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
 
+
+  const openModal = () => {
+  setModalVisible(true);
+}
+const closeModal = () => {
+  setModalVisible(false);
+  }
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
@@ -68,111 +89,150 @@ const SignUpScreen = ({ onSignUp }) => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Proceed with sign-up logic
+     
       onSignUp({ firstName, lastName, email, password, competition });
-      Alert.alert("Sign-up successful!");
+
+      setModalVisible(true);
     }
   };
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          gap: 10,
-          marginHorizontal: 20,
-          marginVertical: 10,
-          marginBottom: 50,
-        }}
-      >
-        <Pressable
-          onPress={() => navigation.navigate("Welcome")}
+    <ScrollView>
+      <View style={styles.container}>
+        <View
           style={{
-            width: 40,
-            height: 40,
-            borderWidth: 1,
-            borderColor: "gray",
-            borderRadius: 40,
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-start",
+            gap: 10,
+            marginHorizontal: 10,
+            marginVertical: 5,
+            marginBottom: 50,
           }}
         >
-          <AntDesign name="caretleft" size={24} color="#000" />
-        </Pressable>
-        <Text style={styles.title}>Create Account</Text>
-      </View>
+          <Pressable onPress={() => navigation.navigate("Welcome")}>
+            <Feather name="arrow-left-circle" size={30} color="lightgray" />
+          </Pressable>
+          <Text style={styles.title}>Create Account</Text>
+        </View>
 
-      <CompetitionPicker
-        selectedValue={competition}
-        onValueChange={setCompetition}
-        error={errors.competition}
-      />
-      <EmailInput value={email} onChangeText={setEmail} error={errors.email} />
-
-      <PasswordInput
-        placeholder="Password*"
-        value={password}
-        onChangeText={setPassword}
-        error={errors.password}
-      />
-
-      <PasswordInput
-        placeholder="Confirm Password*"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        error={errors.confirmPassword}
-      />
-      <FirstNameInput
-        value={firstName}
-        onChangeText={setFirstName}
-        error={errors.firstName}
-      />
-
-      <LastNameInput
-        value={lastName}
-        onChangeText={setLastName}
-        error={errors.lastName}
-      />
-
-      <View style={styles.checkboxContainer}>
-        <CheckBox
-          value={agreeToTerms}
-          onValueChange={setAgreeToTerms}
-          style={styles.checkbox}
+        <CompetitionPicker
+          selectedValue={competition}
+          onValueChange={setCompetition}
+          error={errors.competition}
         />
-        <Text style={styles.label}>
-          By signing up, I agree to cloit's{" "}
-          <Text
-            style={styles.link}
-            onPress={() =>
-              Alert.alert("Terms & Conditions", "Link to terms and conditions")
-            }
-          >
-            Terms & Conditions
-          </Text>{" "}
-          and{" "}
-          <Text
-            style={styles.link}
-            onPress={() =>
-              Alert.alert("Privacy Policy", "Link to privacy policy")
-            }
-          >
-            Privacy Policy
-          </Text>
-          .
-        </Text>
-      </View>
-      {errors.agreeToTerms ? (
-        <Text style={styles.error}>{errors.agreeToTerms}</Text>
-      ) : null}
+        <EmailInput
+          value={email}
+          onChangeText={setEmail}
+          error={errors.email}
+        />
 
-      <Button text="Sign Up" onPress={handleSignUp} />
-    </View>
+        <PasswordInput
+          placeholder="Password*"
+          value={password}
+          onChangeText={setPassword}
+          error={errors.password}
+        />
+
+        <PasswordInput
+          placeholder="Confirm Password*"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          error={errors.confirmPassword}
+        />
+        <FirstNameInput
+          value={firstName}
+          onChangeText={setFirstName}
+          error={errors.firstName}
+        />
+
+        <LastNameInput
+          value={lastName}
+          onChangeText={setLastName}
+          error={errors.lastName}
+        />
+
+        <View style={styles.checkboxContainer}>
+          <CheckBox
+            value={agreeToTerms}
+            onValueChange={setAgreeToTerms}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>
+            By signing up, I agree to cloit's{" "}
+            <Text
+              style={styles.link}
+              onPress={() =>
+                Alert.alert(
+                  "Terms & Conditions",
+                  "Link to terms and conditions"
+                )
+              }
+            >
+              Terms & Conditions
+            </Text>{" "}
+            and{" "}
+            <Text
+              style={styles.link}
+              onPress={() =>
+                Alert.alert("Privacy Policy", "Link to privacy policy")
+              }
+            >
+              Privacy Policy
+            </Text>
+            .
+          </Text>
+        </View>
+        {errors.agreeToTerms ? (
+          <Text style={styles.error}>{errors.agreeToTerms}</Text>
+        ) : null}
+
+        <Button text="Sign Up" onPress={handleSignUp} />
+      </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: 20,
+              }}
+            >
+              <MaterialCommunityIcons
+                name="star-circle"
+                size={40}
+                color="#253BFF"
+              />
+              <Pressable onPress={closeModal}>
+                <SimpleLineIcons name="close" size={35} color="lightgray" />
+              </Pressable>
+            </View>
+
+            <Text style={styles.modalText}>Welcome to Soo</Text>
+            <TextBox
+              style={styles.modalText}
+              text="Great to have you with us"
+            />
+            <TouchableOpacity
+              style={{ ...styles.closeButton, backgroundColor: "#253BFF" }}
+              onPress={closeModal}
+            >
+              <Text style={styles.closeButtonText}>Got it</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </ScrollView>
   );
 };
 
@@ -183,7 +243,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 40,
+    fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -206,6 +266,41 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     marginBottom: 20,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 20,
+    width: "80%",
+  },
+  modalText: {
+    fontSize: 24,
+    marginLeft: 10,
+    marginBottom: 10,
+    fontWeight: "bold",
+  },
+  closeButton: {
+    width: "100%",
+    height: 50,
+    marginTop: 20,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    borderRadius: 30,
+    backgroundColor: "blue",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+  },
+  closeButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 14,
   },
 });
 

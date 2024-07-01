@@ -1,8 +1,10 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet, Text, Button } from "react-native";
 import Background from "../../components/Background";
-// import Btn from "./Btn";
-// import { darkGreen, green } from "./Constants";
+import Feather from "@expo/vector-icons/Feather";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+
 
 const WelcomeScreen = (props) => {
   return (
@@ -16,6 +18,7 @@ const WelcomeScreen = (props) => {
           justifyContent: "space-between",
           height: "100%",
           gap: 250,
+          width: "100%",
         }}
       >
         <View>
@@ -35,23 +38,36 @@ const WelcomeScreen = (props) => {
         </View>
         <View>
           <TouchableOpacity
-            title="Get Started"
             color="#fff"
             style={styles.container}
             activeOpacity={0.8}
             Press={() => props.navigation.navigate("Signup")}
           >
+            <MaterialIcons
+              name="exit-to-app"
+              size={24}
+              color="#fff"
+              style={{ paddingLeft: 4 }}
+            />
             <Text style={styles.text}>Signup for free</Text>
+            <Feather name="arrow-right-circle" size={30} color="#fff" />
           </TouchableOpacity>
 
           <TouchableOpacity
-            title="Get Started"
             color="#fff"
-            style={styles.container}
+            style={styles.container2}
             activeOpacity={0.8}
             Press={() => props.navigation.navigate("/")}
           >
+            <FontAwesome
+              name="envelope-o"
+              size={24}
+              color="#fff"
+              style={{ paddingLeft: 4 }}
+            />
             <Text style={styles.text}>Continue with Email</Text>
+
+            <Feather name="arrow-right-circle" size={30} color="#fff" />
           </TouchableOpacity>
         </View>
       </View>
@@ -61,17 +77,32 @@ const WelcomeScreen = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 300,
+    width: "90%",
     height: 50,
-    marginBottom: 20,
+    marginBottom: 10,
     paddingHorizontal: 10,
-    borderRadius: 8,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
+    borderRadius: 30,
+    backgroundColor: "#253BFF",
     display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    
   },
-  text: { color: "white", textAlign: "center", fontSize: 20 },
+  container2: {
+    width: "90%",
+    height: 50,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    borderRadius: 30,
+    backgroundColor: "#1D2939",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    
+  },
+  text: { color: "white", textAlign: "center", fontSize: 14 },
 });
 
 export default WelcomeScreen;
